@@ -1,0 +1,20 @@
+class Solution {
+public:
+        int maxArea(vector<int>& height) {
+                int right=0,left = height.size() -1;
+        int max_size=min(height[right],height[left])*(height.size()-1);
+        
+        for(int i=1;i<height.size()-1;i++)
+        {
+            if(height[right]<height[left])
+                right++;
+            else
+                left--;
+            if(max_size<(min(height[right],height[left])*(height.size()-1-i)))
+                max_size=min(height[right],height[left])*(height.size()-1-i);
+        }
+        return max_size;
+    }
+};
+
+//起點為兩端，較短那邊向內移(因為較長邊向內移不會使面積變大)，若新的兩邊面積較原本大，更新最大值，做n-2次即可得到面積最大值。
