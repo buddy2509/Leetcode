@@ -1,0 +1,42 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        
+        sort(nums.begin(),nums.end());  //先排序
+        int left,right,target;
+        vector<vector<int>> result;
+        
+        for(unsigned int base=0;base<nums.size();base++)
+        {
+            if((base>0)&&nums[base]==nums[base-1]) //若當base的數與前一個相同，要跳過，不然會重複算。
+                continue;
+            target=-nums[base];
+            left=base+1;
+            right=nums.size()-1;
+        
+            
+            while(left<right)
+            {
+                if(nums[right]+nums[left]>target)
+                   right--;
+                else if(nums[right]+nums[left]<target)
+                    left++;
+                else
+                {
+                    result.push_back(vector<int>{nums[left],nums[base],nums[right]});
+                
+
+                    while(left<right&&nums[left]==nums[left+1]) //left<right很重要!!!不然left會一直往左邊直到超出nums的空間
+                        left++; //left若指到跟前個數相同的，要跳過，不然會重複算。
+                    left++;
+                    while(left<right&&nums[right]==nums[right-1]) //同上
+                        right--; //同上
+                    right--;
+                }
+             }
+        }
+            
+                
+        return result;
+    }
+};
