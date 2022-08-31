@@ -10,10 +10,10 @@ public:
             mid=i;
             temp_len=1;
             left=mid-1;
-            while(s[mid]==s[mid+1])
+            while(s[mid]==s[mid+1])   //ex baaab
             {
                 mid++;
-                temp_len++;
+                temp_len++; 
             }
             right=mid+1;
             while((left>=0&&right<str_len)&&((s[left]==s[right])))
