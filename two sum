@@ -1,0 +1,42 @@
+class Solution {
+public:
+    vector<int> find(vector<int> nums,int temp1,int temp2)
+    {
+        int now=0;
+        vector<int> res;
+        while(res.size()<2)
+        {
+            if(nums[now]==temp1)
+            {
+                res.push_back(now);
+                now++;
+            }
+            else if(nums[now]==temp2)
+            {
+                res.push_back(now);
+                now++;
+            }
+                
+            else now++;
+        }
+        return res;
+    }
+    //排序後 先將最左跟最右相加，若比target大，右邊往左一格，反之左邊往右一格，最後再找到兩數在原本array的位置。
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int size=nums.size();
+        vector<int> temp=nums;
+        sort(nums.begin(),nums.end());
+        int l=0,r=size-1;
+        while(1)
+        {
+            if(nums[l]+nums[r]==target)
+            {
+                return find(temp,nums[l],nums[r]);
+            }
+            else if(nums[l]+nums[r]<target)
+                l++;
+            else
+                r--;
+        }
+    }
+};
